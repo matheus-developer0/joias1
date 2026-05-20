@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarice Semijoias | Alta Joalheria & Elegância</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display e Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons para ícones minimalistas e elegantes -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#C5A880',
+                            goldHover: '#B59670',
+                            dark: '#1F1915',
+                            charcoal: '#2D251E',
+                            beige: '#FAF8F5',
+                            sand: '#EFE8DF',
+                            muted: '#8E8071'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos finos adicionais e transições exclusivas */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(197, 168, 128, 0.2);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A880;
+            border-radius: 3px;
+        }
+        /* Transição Suave Lateral para Carrinho */
+        .cart-sidebar {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="bg-brand-beige text-brand-charcoal font-sans antialiased selection:bg-brand-gold selection:text-white overflow-x-hidden">
+
+    <!-- Faixa de Aviso Superior (Estilo Clean, sem emojis) -->
+    <div class="bg-brand-dark text-[#F3ECE4] text-[10px] sm:text-xs py-2 px-4 text-center tracking-[0.2em] font-medium uppercase border-b border-brand-gold/10">
+        FRETE GRÁTIS EM COMPRAS ACIMA DE R$ 250 • EMBALAGEM EXCLUSIVA DE PRESENTE
+    </div>
+
+    <!-- Cabeçalho Principal -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-sand transition-all duration-300 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Menu de Navegação Esquerdo (Desktop) -->
+            <nav class="hidden md:flex space-x-8 text-xs uppercase tracking-[0.2em] font-semibold text-brand-charcoal/85">
+                <a href="#hero" class="hover:text-brand-gold transition-colors duration-200">Início</a>
+                <a href="#categories" class="hover:text-brand-gold transition-colors duration-200">Categorias</a>
+                <a href="#products" class="hover:text-brand-gold transition-colors duration-200">Coleções</a>
+                <a href="#differentials" class="hover:text-brand-gold transition-colors duration-200">Diferenciais</a>
+            </nav>
+
+            <!-- Logo Luxuoso Central -->
+            <div class="text-center">
+                <a href="#hero" class="inline-block group">
+                    <span class="block font-serif text-2xl sm:text-3xl tracking-[0.25em] font-semibold text-brand-dark group-hover:text-brand-gold transition-colors duration-300">CLARICE</span>
+                    <span class="block text-[8px] sm:text-[9px] uppercase tracking-[0.6em] text-brand-gold -mt-1 pl-1">SEMIJOIAS</span>
+                </a>
+            </div>
+
+            <!-- Ícones e Ações da Direita -->
+            <div class="flex items-center space-x-5">
+                <!-- Instagram Quick Link -->
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="text-brand-charcoal hover:text-brand-gold transition-colors p-2 hidden sm:inline" title="Siga no Instagram">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                </a>
+
+                <!-- Botão Carrinho de Compras -->
+                <button onclick="toggleCart(true)" class="relative p-2 text-brand-dark hover:text-brand-gold transition-colors duration-300 group" aria-label="Abrir carrinho de compras">
+                    <i data-lucide="shopping-bag" class="w-[22px] h-[22px] group-hover:scale-105 transition-transform duration-200"></i>
+                    <span id="cart-badge" class="absolute -top-0.5 -right-0.5 bg-brand-dark text-white text-[9px] w-5 h-5 rounded-full flex items-center justify-center font-bold border-2 border-white hidden">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section id="hero" class="relative min-h-[85vh] flex items-center bg-brand-beige overflow-hidden">
+        <!-- Backdrops Decorativos de Luz e Degradê -->
+        <div class="absolute top-1/4 left-1/4 w-[350px] h-[350px] bg-brand-gold/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-10 w-[300px] h-[300px] bg-brand-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-24 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Informações do Banner (Esquerda) -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left animate-fade-in-up">
+                    <div class="inline-flex items-center space-x-2 bg-white px-3.5 py-1.5 rounded-full border border-brand-sand shadow-sm">
+                        <i data-lucide="gem" class="w-3.5 h-3.5 text-brand-gold"></i>
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-semibold text-brand-charcoal/80">Coleção de Luxo 2026</span>
+                    </div>
+                    
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-dark leading-[1.15] font-medium tracking-wide">
+                        Semijoias que <br />
+                        <span class="italic text-brand-gold font-light">realçam sua beleza</span> <br />
+                        única e genuína
+                    </h1>
+                    
+                    <p class="text-sm sm:text-base text-brand-muted max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Peças delicadas, sofisticadas e feitas para mulheres elegantes. Banho nobre em ouro 18k e cravação artesanal com qualidade superior inspirada na alta joalheria.
+                    </p>
+                    
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
+                        <a href="#products" class="w-full sm:w-auto text-center px-8 py-4 bg-brand-dark text-white hover:bg-brand-gold transition-colors duration-300 text-xs uppercase tracking-[0.2em] font-semibold rounded-sm shadow-xl hover:shadow-2xl">
+                            Comprar Agora
+                        </a>
+                        <a href="#categories" class="w-full sm:w-auto text-center px-8 py-4 border border-brand-dark/30 text-brand-dark hover:border-brand-dark transition-all duration-300 text-xs uppercase tracking-[0.2em] font-semibold rounded-sm">
+                            Ver Categorias
+                        </a>
+                    </div>
+
+                    <!-- Selos de Confiança Minimalistas -->
+                    <div class="pt-8 grid grid-cols-3 gap-4 border-t border-brand-sand/80 max-w-md mx-auto lg:mx-0">
+                        <div>
+                          <span class="block text-xl font-serif text-brand-dark font-semibold">18k</span>
+                          <span class="text-[10px] text-brand-muted uppercase tracking-widest">Banho Nobre</span>
+                        </div>
+                        <div>
+                          <span class="block text-xl font-serif text-brand-dark font-semibold">1 Ano</span>
+                          <span class="text-[10px] text-brand-muted uppercase tracking-widest">Garantia Total</span>
+                        </div>
+                        <div>
+                          <span class="block text-xl font-serif text-brand-dark font-semibold">100%</span>
+                          <span class="text-[10px] text-brand-muted uppercase tracking-widest">Antialérgico</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagem do Banner (Direita) -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative mx-auto max-w-sm lg:max-w-none">
+                        <!-- Moldura Dourada Deslocada -->
+                        <div class="absolute inset-0 border border-brand-gold/30 translate-x-4 translate-y-4 rounded-lg pointer-events-none"></div>
+                        
+                        <!-- Imagem de Destaque -->
+                        <div class="relative aspect-[4/5] overflow-hidden rounded-lg shadow-2xl">
+                            <img 
+                                src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80" 
+                                alt="Modelo Clarice Semijoias com colar e brincos elegantes" 
+                                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-[1.5s]"
+                            />
+                            
+                            <!-- Card de Vidro Flutuante (Glassmorphism) -->
+                            <div class="absolute bottom-6 left-6 right-6 bg-white/70 backdrop-blur-md p-4 rounded border border-white/40 shadow-lg">
+                                <p class="text-[10px] uppercase tracking-[0.15em] text-brand-gold font-bold mb-0.5">Peça Premium</p>
+                                <p class="font-serif text-brand-dark text-sm font-semibold">Colar Riviera Ouro 18k</p>
+                                <p class="text-[11px] text-brand-muted mt-0.5">Acabamento polido artesanalmente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Categorias -->
+    <section id="categories" class="py-20 bg-white border-y border-brand-sand/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-xl mx-auto mb-14">
+                <span class="text-xs uppercase tracking-[0.25em] text-brand-gold font-bold">Portfólio Clarice</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-brand-dark mt-2 font-medium tracking-wide">Explore nossas Peças</h2>
+                <div class="w-16 h-[1px] bg-brand-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6">
+                <!-- Categoria: Colares -->
+                <button onclick="filterCategory('Colares')" class="group relative block w-full text-left overflow-hidden bg-brand-beige rounded-lg border border-brand-sand hover:shadow-xl transition-all duration-300">
+                    <div class="aspect-[4/5] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" alt="Colares" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <span class="text-[9px] uppercase tracking-widest text-brand-gold font-bold block mb-0.5">Exclusivos</span>
+                        <h3 class="font-serif text-base tracking-wider font-semibold">Colares</h3>
+                    </div>
+                </button>
+
+                <!-- Categoria: Anéis -->
+                <button onclick="filterCategory('Anéis')" class="group relative block w-full text-left overflow-hidden bg-brand-beige rounded-lg border border-brand-sand hover:shadow-xl transition-all duration-300">
+                    <div class="aspect-[4/5] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" alt="Anéis" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <span class="text-[9px] uppercase tracking-widest text-brand-gold font-bold block mb-0.5">Delicados</span>
+                        <h3 class="font-serif text-base tracking-wider font-semibold">Anéis</h3>
+                    </div>
+                </button>
+
+                <!-- Categoria: Pulseiras -->
+                <button onclick="filterCategory('Pulseiras')" class="group relative block w-full text-left overflow-hidden bg-brand-beige rounded-lg border border-brand-sand hover:shadow-xl transition-all duration-300">
+                    <div class="aspect-[4/5] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" alt="Pulseiras" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <span class="text-[9px] uppercase tracking-widest text-brand-gold font-bold block mb-0.5">Modernas</span>
+                        <h3 class="font-serif text-base tracking-wider font-semibold">Pulseiras</h3>
+                    </div>
+                </button>
+
+                <!-- Categoria: Brincos -->
+                <button onclick="filterCategory('Brincos')" class="group relative block w-full text-left overflow-hidden bg-brand-beige rounded-lg border border-brand-sand hover:shadow-xl transition-all duration-300">
+                    <div class="aspect-[4/5] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=400&q=80" alt="Brincos" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <span class="text-[9px] uppercase tracking-widest text-brand-gold font-bold block mb-0.5">Brilhantes</span>
+                        <h3 class="font-serif text-base tracking-wider font-semibold">Brincos</h3>
+                    </div>
+                </button>
+
+                <!-- Categoria: Kits -->
+                <button onclick="filterCategory('Kits')" class="group relative block w-full text-left overflow-hidden bg-brand-beige rounded-lg border border-brand-sand hover:shadow-xl transition-all duration-300">
+                    <div class="aspect-[4/5] overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=400&q=80" alt="Kits" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <span class="text-[9px] uppercase tracking-widest text-brand-gold font-bold block mb-0.5">Combinações</span>
+                        <h3 class="font-serif text-base tracking-wider font-semibold">Kits</h3>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Seção de Produtos em Destaque -->
+    <section id="products" class="py-24 bg-brand-beige">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-[0.25em] text-brand-gold font-bold block">Alta Curadoria</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-brand-dark mt-2 font-medium tracking-wide">Destaques Exclusivos</h2>
+                <div class="w-16 h-[1px] bg-brand-gold mx-auto mt-4"></div>
+                <p class="text-brand-muted text-xs sm:text-sm mt-3 font-light">Peças autorais com detalhes finos de cravação de zircônias e pedras naturais.</p>
+            </div>
+
+            <!-- Tabs de Filtro de Categoria -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12" id="filter-tabs">
+                <button onclick="filterCategory('Todos')" class="category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-brand-dark text-white shadow-lg font-semibold" data-category="Todos">
+                    Todos
+                </button>
+                <button onclick="filterCategory('Colares')" class="category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-white text-brand-charcoal border border-brand-sand hover:border-brand-gold hover:text-brand-gold font-semibold" data-category="Colares">
+                    Colares
+                </button>
+                <button onclick="filterCategory('Anéis')" class="category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-white text-brand-charcoal border border-brand-sand hover:border-brand-gold hover:text-brand-gold font-semibold" data-category="Anéis">
+                    Anéis
+                </button>
+                <button onclick="filterCategory('Pulseiras')" class="category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-white text-brand-charcoal border border-brand-sand hover:border-brand-gold hover:text-brand-gold font-semibold" data-category="Pulseiras">
+                    Pulseiras
+                </button>
+                <button onclick="filterCategory('Brincos')" class="category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-white text-brand-charcoal border border-brand-sand hover:border-brand-gold hover:text-brand-gold font-semibold" data-category="Brincos">
+                    Brincos
+                </button>
+                <button onclick="filterCategory('Kits')" class="category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-white text-brand-charcoal border border-brand-sand hover:border-brand-gold hover:text-brand-gold font-semibold" data-category="Kits">
+                    Kits
+                </button>
+            </div>
+
+            <!-- Grade Dinâmica de Produtos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8" id="product-grid">
+                <!-- Injetado dinamicamente pelo JS -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Diferenciais da Marca -->
+    <section id="differentials" class="py-20 bg-white border-y border-brand-sand/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                
+                <div class="text-center space-y-3 group">
+                    <div class="mx-auto w-12 h-12 bg-brand-beige rounded-full flex items-center justify-center text-brand-gold border border-brand-sand group-hover:bg-brand-gold group-hover:text-white transition-all duration-300">
+                        <i data-lucide="truck" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark font-semibold">Envio para todo Brasil</h4>
+                    <p class="text-xs text-brand-muted font-light leading-relaxed">Sua semijoia viaja com seguro contra roubo ou extravio.</p>
+                </div>
+
+                <div class="text-center space-y-3 group">
+                    <div class="mx-auto w-12 h-12 bg-brand-beige rounded-full flex items-center justify-center text-brand-gold border border-brand-sand group-hover:bg-brand-gold group-hover:text-white transition-all duration-300">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark font-semibold">Garantia Certificada</h4>
+                    <p class="text-xs text-brand-muted font-light leading-relaxed">Oferecemos 1 ano de garantia total no banho de ouro 18k.</p>
+                </div>
+
+                <div class="text-center space-y-3 group">
+                    <div class="mx-auto w-12 h-12 bg-brand-beige rounded-full flex items-center justify-center text-brand-gold border border-brand-sand group-hover:bg-brand-gold group-hover:text-white transition-all duration-300">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-emerald-600 group-hover:text-white"></i>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark font-semibold">Suporte VIP</h4>
+                    <p class="text-xs text-brand-muted font-light leading-relaxed">Atendimento humanizado via WhatsApp sempre pronto para você.</p>
+                </div>
+
+                <div class="text-center space-y-3 group">
+                    <div class="mx-auto w-12 h-12 bg-brand-beige rounded-full flex items-center justify-center text-brand-gold border border-brand-sand group-hover:bg-brand-gold group-hover:text-white transition-all duration-300">
+                        <i data-lucide="gem" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark font-semibold">Peças Hipoalergênicas</h4>
+                    <p class="text-xs text-brand-muted font-light leading-relaxed">Livre de níquel e chumbo, revestidas com verniz suíço extra protetor.</p>
+                </div>
+
+                <div class="text-center space-y-3 group">
+                    <div class="mx-auto w-12 h-12 bg-brand-beige rounded-full flex items-center justify-center text-brand-gold border border-brand-sand group-hover:bg-brand-gold group-hover:text-white transition-all duration-300">
+                        <i data-lucide="gift" class="w-5 h-5"></i>
+                    </div>
+                    <h4 class="font-serif text-base text-brand-dark font-semibold">Embalagem de Luxo</h4>
+                    <p class="text-xs text-brand-muted font-light leading-relaxed">Caixa perfumada sob medida, ideal para um presente memorável.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Prova Social (Depoimentos) -->
+    <section class="py-24 bg-brand-beige">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-[0.25em] text-brand-gold font-bold">Depoimentos Reais</span>
+                <h2 class="font-serif text-3xl sm:text-4xl text-brand-dark mt-2 font-medium tracking-wide">Experiências Memoráveis</h2>
+                <div class="w-16 h-[1px] bg-brand-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Depoimento 1 -->
+                <div class="bg-white p-8 rounded-lg border border-brand-sand shadow-sm relative flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <span class="absolute top-4 right-6 text-6xl font-serif text-brand-gold/15 pointer-events-none">“</span>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-0.5 text-amber-500">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-charcoal leading-relaxed italic">
+                            "Estou encantada com a delicadeza e o brilho do colar de zircônia. Recebi em uma caixinha maravilhosa e super cheirosa. Com certeza comprarei outras peças para as festas!"
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-brand-sand flex items-center space-x-3.5">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Mariana" class="w-11 h-11 rounded-full object-cover border border-brand-gold/20">
+                        <div>
+                            <h5 class="font-serif text-xs sm:text-sm text-brand-dark font-bold">Mariana Alencar</h5>
+                            <span class="text-[10px] text-brand-muted tracking-wide">São Paulo - SP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="bg-white p-8 rounded-lg border border-brand-sand shadow-sm relative flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <span class="absolute top-4 right-6 text-6xl font-serif text-brand-gold/15 pointer-events-none">“</span>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-0.5 text-amber-500">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-charcoal leading-relaxed italic">
+                            "Comprei o anel solitário e uso todos os dias, inclusive para tomar banho. Já faz 6 meses e o banho continua perfeito e sem riscos. Vale cada centavo pela durabilidade!"
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-brand-sand flex items-center space-x-3.5">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Beatriz" class="w-11 h-11 rounded-full object-cover border border-brand-gold/20">
+                        <div>
+                            <h5 class="font-serif text-xs sm:text-sm text-brand-dark font-bold">Beatriz Nogueira</h5>
+                            <span class="text-[10px] text-brand-muted tracking-wide">Rio de Janeiro - RJ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="bg-white p-8 rounded-lg border border-brand-sand shadow-sm relative flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <span class="absolute top-4 right-6 text-6xl font-serif text-brand-gold/15 pointer-events-none">“</span>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-0.5 text-amber-500">
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                            <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-brand-charcoal leading-relaxed italic">
+                            "Excelente atendimento pelo WhatsApp! Tive dúvidas de tamanho das pulseiras e me enviaram vídeos com fotos reais de ótima qualidade. Recomendo muito!"
+                        </p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-brand-sand flex items-center space-x-3.5">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=120&q=80" alt="Clara" class="w-11 h-11 rounded-full object-cover border border-brand-gold/20">
+                        <div>
+                            <h5 class="font-serif text-xs sm:text-sm text-brand-dark font-bold">Clara Vasconcelos</h5>
+                            <span class="text-[10px] text-brand-muted tracking-wide">Belo Horizonte - MG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Seção do Instagram -->
+    <section class="py-20 bg-white border-t border-brand-sand/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="mb-12">
+                <span class="text-xs uppercase tracking-[0.25em] text-brand-gold font-bold">Galeria Exclusiva</span>
+                <h2 class="font-serif text-3xl text-brand-dark mt-1 font-medium tracking-wide">Siga-nos no Instagram</h2>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="inline-block text-xs sm:text-sm text-brand-gold hover:underline tracking-widest uppercase mt-2 font-bold">
+                    @use.clarice_semijoias
+                </a>
+            </div>
+
+            <!-- Mosaico de Postagens Premium -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="group relative block aspect-square overflow-hidden rounded-md">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80" alt="Foto Instagram 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="group relative block aspect-square overflow-hidden rounded-md">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=400&q=80" alt="Foto Instagram 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="group relative block aspect-square overflow-hidden rounded-md">
+                    <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=400&q=80" alt="Foto Instagram 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="group relative block aspect-square overflow-hidden rounded-md">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=400&q=80" alt="Foto Instagram 4" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="group relative block aspect-square overflow-hidden rounded-md">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=400&q=80" alt="Foto Instagram 5" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" class="group relative block aspect-square overflow-hidden rounded-md">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80" alt="Foto Instagram 6" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i data-lucide="instagram" class="w-6 h-6 text-white"></i>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Rodapé Premium -->
+    <footer class="bg-brand-dark text-[#FAF8F5] pt-16 pb-8 border-t border-brand-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            
+            <!-- Logo e Descrição de Missão -->
+            <div class="space-y-4">
+                <span class="block font-serif text-3xl tracking-[0.2em] font-bold text-white">CLARICE</span>
+                <span class="block text-[10px] uppercase tracking-[0.5em] text-brand-gold -mt-3 mb-4">SEMIJOIAS</span>
+                <p class="text-xs text-[#BCB3AA] leading-relaxed max-w-sm">
+                    Mais do que semijoias, criamos histórias afetivas banhadas a ouro 18k com acabamento premium e antialérgico que exalam sofisticação e leveza.
+                </p>
+                <!-- Redes sociais e WhatsApp -->
+                <div class="flex space-x-3 pt-2">
+                    <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full border border-[#BCB3AA]/30 flex items-center justify-center text-[#BCB3AA] hover:text-white hover:border-white transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="https://wa.me/5511999999999" target="_blank" class="w-8 h-8 rounded-full border border-[#BCB3AA]/30 flex items-center justify-center text-[#BCB3AA] hover:text-white hover:border-white transition-all"><i data-lucide="phone" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+
+            <!-- Navegação Rápida -->
+            <div class="space-y-4">
+                <h5 class="font-serif text-xs sm:text-sm tracking-widest text-brand-gold uppercase font-bold">Navegação</h5>
+                <ul class="space-y-2.5 text-xs text-[#BCB3AA]">
+                    <li><a href="#hero" class="hover:text-white transition-colors">Início</a></li>
+                    <li><a href="#categories" class="hover:text-white transition-colors">Categorias</a></li>
+                    <li><a href="#products" class="hover:text-white transition-colors">Lançamentos</a></li>
+                    <li><a href="#differentials" class="hover:text-white transition-colors">Diferenciais</a></li>
+                </ul>
+            </div>
+
+            <!-- Atendimento e Políticas -->
+            <div class="space-y-4">
+                <h5 class="font-serif text-xs sm:text-sm tracking-widest text-brand-gold uppercase font-bold">Políticas & Ajuda</h5>
+                <ul class="space-y-2.5 text-xs text-[#BCB3AA]">
+                    <li><a href="#" class="hover:text-white transition-colors">Trocas e Devoluções</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Envios e Entregas</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Cuidados com as Peças</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Certificado de Garantia</a></li>
+                </ul>
+            </div>
+
+            <!-- Inscrição Newsletter Exclusiva -->
+            <div class="space-y-4">
+                <h5 class="font-serif text-xs sm:text-sm tracking-widest text-brand-gold uppercase font-bold">Clube Clarice</h5>
+                <p class="text-xs text-[#BCB3AA] leading-relaxed">Assine para receber convites para pré-lançamentos, coleções cápsula e benefícios especiais de fidelidade.</p>
+                <div class="flex">
+                    <input 
+                        type="email" 
+                        id="newsletter-email"
+                        placeholder="Seu melhor e-mail" 
+                        class="bg-[#2D251E] text-white text-xs px-4 py-3 border border-[#EFE8DF]/10 rounded-l focus:outline-none focus:border-brand-gold/60 w-full"
+                    />
+                    <button 
+                        onclick="subscribeNewsletter()"
+                        class="bg-brand-gold hover:bg-brand-goldHover text-white text-[10px] uppercase tracking-widest px-4 py-3 rounded-r font-bold transition-colors"
+                    >
+                        Enviar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Linha Final de Direitos Autorais -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#FAF8F5]/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] sm:text-xs text-[#BCB3AA]">
+            <p>© 2026 Clarice Semijoias Premium S.A. Todos os direitos reservados. CNPJ 00.000.000/0001-00</p>
+            <div class="flex space-x-4">
+                <span>Criado sob o conceito de luxo silencioso.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PANEL: Carrinho de Compras Lateral (Slide-over) -->
+    <div id="cart-overlay" onclick="toggleCart(false)" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex justify-end opacity-0 transition-opacity duration-300">
+        <!-- Sidebar Content -->
+        <div id="cart-sidebar" onclick="event.stopPropagation()" class="w-full max-w-md bg-brand-beige text-brand-charcoal h-full shadow-2xl flex flex-col justify-between relative border-l border-brand-gold/20 translate-x-full cart-sidebar">
+            
+            <!-- Topo do Carrinho -->
+            <div class="p-6 border-b border-brand-sand flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-brand-gold"></i>
+                    <h3 class="font-serif text-lg sm:text-xl font-semibold text-brand-dark">Seu Carrinho</h3>
+                    <span id="cart-count-badge" class="bg-brand-dark text-white text-[10px] px-2.5 py-0.5 rounded-full font-bold">0</span>
+                </div>
+                <button onclick="toggleCart(false)" class="text-brand-muted hover:text-brand-dark p-1.5" title="Fechar Carrinho">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Listagem de Itens no Carrinho -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-6" id="cart-items-container">
+                <!-- Injetado dinamicamente -->
+            </div>
+
+            <!-- Painel Fixo de Resumos e Checkout -->
+            <div id="cart-summary-panel" class="p-6 bg-white border-t border-brand-sand space-y-4">
+                <div class="space-y-2">
+                    <!-- Progresso de Frete Grátis -->
+                    <div class="p-2.5 bg-brand-beige rounded border border-brand-sand text-[11px] text-brand-charcoal" id="free-shipping-progress">
+                        Falta <strong class="text-brand-gold font-bold">R$ 250,00</strong> para ganhar <strong>Frete Grátis</strong>.
+                    </div>
+                    
+                    <div class="flex justify-between text-xs text-brand-muted">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-brand-muted">
+                        <span>Frete</span>
+                        <span id="cart-shipping" class="text-brand-gold font-bold">A calcular</span>
+                    </div>
+                    <div class="flex justify-between font-serif text-base sm:text-lg font-bold text-brand-dark pt-1 border-t border-brand-sand/60">
+                        <span>Total Estimado</span>
+                        <span id="cart-total">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-2">
+                    <button onclick="toggleCheckout(true)" class="w-full py-4 bg-brand-dark hover:bg-brand-gold text-white text-xs uppercase tracking-widest font-bold transition-all flex items-center justify-center space-x-2">
+                        <span>Prosseguir para Entrega</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                    <button onclick="toggleCart(false)" class="w-full py-3 bg-transparent text-xs text-brand-muted hover:text-brand-dark font-semibold tracking-wider text-center">
+                        Continuar Comprando
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL: Checkout Simples de Luxo -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-brand-beige text-brand-charcoal rounded-lg max-w-lg w-full overflow-hidden relative shadow-2xl border border-brand-gold/30 flex flex-col max-h-[90vh]">
+            
+            <!-- Cabeçalho do Checkout -->
+            <div class="p-6 border-b border-brand-sand flex items-center justify-between bg-white">
+                <h3 class="font-serif text-lg sm:text-xl font-semibold text-brand-dark">Concluir Solicitação</h3>
+                <button onclick="toggleCheckout(false)" class="text-brand-muted hover:text-brand-dark p-1.5" title="Fechar Checkout">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Formulário de Compra -->
+            <form onsubmit="handleCheckout(event)" class="flex-1 overflow-y-auto p-6 space-y-5">
+                
+                <!-- Resumo dos Itens (Resumido) -->
+                <div class="bg-amber-50/50 p-4 rounded-lg border border-brand-gold/20 text-xs space-y-2">
+                    <span class="font-serif font-bold text-brand-dark block">Resumo do Pedido:</span>
+                    <div class="max-h-24 overflow-y-auto space-y-1.5 pr-1" id="checkout-items-list">
+                        <!-- Itens do carrinho -->
+                    </div>
+                    <div class="flex justify-between font-bold text-brand-dark pt-2 border-t border-brand-sand mt-1 text-sm">
+                        <span>Total Geral:</span>
+                        <span id="checkout-total">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <!-- Campo: Nome Completo -->
+                <div class="space-y-1.5">
+                    <label class="block text-[10px] uppercase tracking-wider text-brand-charcoal font-bold">Nome Completo</label>
+                    <input type="text" id="chk-name" required placeholder="Ex: Ana Maria Silva" class="w-full bg-white border border-brand-sand rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold text-brand-dark">
+                </div>
+
+                <!-- Campo: WhatsApp -->
+                <div class="space-y-1.5">
+                    <label class="block text-[10px] uppercase tracking-wider text-brand-charcoal font-bold">WhatsApp de Contato</label>
+                    <input type="tel" id="chk-phone" required placeholder="Ex: (11) 99999-9999" class="w-full bg-white border border-brand-sand rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold text-brand-dark">
+                </div>
+
+                <!-- Campo: Endereço Completo -->
+                <div class="space-y-1.5">
+                    <label class="block text-[10px] uppercase tracking-wider text-brand-charcoal font-bold">Endereço de Entrega</label>
+                    <textarea id="chk-address" required rows="2" placeholder="Rua, número, apto, bairro, cidade, UF e CEP" class="w-full bg-white border border-brand-sand rounded px-4 py-3 text-sm focus:outline-none focus:border-brand-gold text-brand-dark resize-none"></textarea>
+                </div>
+
+                <!-- Campo: Meio de pagamento -->
+                <div class="space-y-1.5">
+                    <label class="block text-[10px] uppercase tracking-wider text-brand-charcoal font-bold">Forma de Pagamento</label>
+                    <div class="grid grid-cols-3 gap-2" id="chk-payment-group">
+                        <button type="button" onclick="setPaymentMethod('Pix')" class="payment-btn py-2.5 text-[10px] uppercase tracking-wider font-bold border rounded bg-brand-dark text-white border-brand-dark" data-method="Pix">
+                            Pix
+                        </button>
+                        <button type="button" onclick="setPaymentMethod('Cartão')" class="payment-btn py-2.5 text-[10px] uppercase tracking-wider font-bold border border-brand-sand bg-white text-brand-muted hover:border-brand-gold" data-method="Cartão">
+                            Cartão
+                        </button>
+                        <button type="button" onclick="setPaymentMethod('Boleto')" class="payment-btn py-2.5 text-[10px] uppercase tracking-wider font-bold border border-brand-sand bg-white text-brand-muted hover:border-brand-gold" data-method="Boleto">
+                            Boleto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Botão Enviar WhatsApp -->
+                <div class="pt-4 border-t border-brand-sand">
+                    <button type="submit" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white text-xs uppercase tracking-widest font-bold rounded-md flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transition-all">
+                        <i data-lucide="phone-call" class="w-4 h-4"></i>
+                        <span>Finalizar Pedido no WhatsApp</span>
+                    </button>
+                    <p class="text-[9px] text-center text-brand-muted mt-2.5 leading-relaxed">
+                        Ao clicar, sua mensagem de pedido estruturada será enviada diretamente para o nosso atendimento no WhatsApp para validação rápida de pagamento e envio.
+                    </p>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- MODAL: Detalhes do Produto (Quick View) -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-brand-beige text-brand-charcoal rounded-lg max-w-2xl w-full overflow-hidden relative shadow-2xl border border-brand-gold/30 animate-fade-in">
+            
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-brand-muted hover:text-brand-dark p-2 bg-white/80 rounded-full z-10 shadow" title="Fechar Visualização">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="grid grid-cols-1 md:grid-cols-2" id="quick-view-content">
+                <!-- Injetado Dinamicamente -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toaster Container de Alertas Flutuantes -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full px-4">
+        <!-- Notificações aparecem aqui -->
+    </div>
+
+    <script>
+        // Banco de Dados de Produtos Fictícios de Luxo (Sem Emojis ou referências de assistência sintética)
+        const PRODUCTS = [
+            {
+                id: 1,
+                name: "Colar Riviera Premium Zircônia",
+                category: "Colares",
+                price: 249.90,
+                installments: "3x de R$ 83,30",
+                rating: 5,
+                tag: "Best Seller",
+                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=600&q=80",
+                description: "Colar deslumbrante estilo Riviera cravejado com zircônias de lapidação brilhante premium. Acabamento polido banhado em Ouro 18k."
+            },
+            {
+                id: 2,
+                name: "Anel Solitário Clarice Signature",
+                category: "Anéis",
+                price: 189.90,
+                installments: "3x de R$ 63,30",
+                rating: 5,
+                tag: "Exclusivo",
+                image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80",
+                description: "O clássico solitário reinventado para mulheres imponentes. Uma exuberante gema central de cristal premium com lapidação facetada em garras polidas."
+            },
+            {
+                id: 3,
+                name: "Brincos Cascata de Zircônias",
+                category: "Brincos",
+                price: 159.90,
+                installments: "3x de R$ 53,30",
+                rating: 4.9,
+                tag: "Destaque",
+                image: "https://images.unsplash.com/photo-1635767798638-3e25273a8236?auto=format&fit=crop&w=600&q=80",
+                description: "Movimento e brilho inigualáveis nesta cascata de cristais premium totalmente hipoalergênicos de alto padrão com banho ouro 18k."
+            },
+            {
+                id: 4,
+                name: "Pulseira Elo Português Gold",
+                category: "Pulseiras",
+                price: 219.90,
+                installments: "3x de R$ 73,30",
+                rating: 5,
+                tag: "Clássico",
+                image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80",
+                description: "Elo português robusto e elegante, trazendo um toque de modernidade e sofisticação para suas produções casuais ou formais."
+            },
+            {
+                id: 5,
+                name: "Gargantilha Ponto de Luz Classic",
+                category: "Colares",
+                price: 119.90,
+                installments: "2x de R$ 59,95",
+                rating: 4.8,
+                tag: "Minimalista",
+                image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80",
+                description: "Minimalismo atemporal. Esta refinada gargantilha traz um único ponto de luz sobre corrente veneziana fina banhada em ouro de altíssima qualidade."
+            },
+            {
+                id: 6,
+                name: "Anel Duplo Cravejado Luxo",
+                category: "Anéis",
+                price: 179.90,
+                installments: "3x de R$ 59,97",
+                rating: 4.9,
+                tag: "Novo",
+                image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80",
+                description: "Design duplo moderno com acabamento premium polido e microcravação de zircônias cintilantes ao longo das duas bandas."
+            },
+            {
+                id: 7,
+                name: "Brincos Argola Riscada Gold",
+                category: "Brincos",
+                price: 139.90,
+                installments: "2x de R$ 69,95",
+                rating: 5,
+                tag: "Chic",
+                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
+                description: "Argolas de tamanho médio com relevos riscados elegantes. O complemento perfeito para destacar a beleza natural feminina no dia a dia."
+            },
+            {
+                id: 8,
+                name: "Conjunto Elegance Gold & Pérola",
+                category: "Kits",
+                price: 349.90,
+                installments: "5x de R$ 69,98",
+                rating: 5,
+                tag: "Premium Kit",
+                image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=600&q=80",
+                description: "Conjunto primoroso contendo colar elegante e par de brincos harmonizados com pérolas naturais de água doce lapidadas à mão."
+            }
+        ];
+
+        // Estado do Aplicativo
+        let cart = [];
+        let activeCategory = "Todos";
+        let selectedPaymentMethod = "Pix";
+
+        // Inicializador
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+            lucide.createIcons();
+        });
+
+        // Renderizar Produtos com Filtro
+        function renderProducts() {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = "";
+
+            const filtered = PRODUCTS.filter(p => activeCategory === "Todos" || p.category === activeCategory);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "group bg-white border border-brand-sand hover:border-brand-gold/40 rounded-lg overflow-hidden transition-all duration-500 hover:shadow-2xl flex flex-col justify-between";
+                
+                let tagMarkup = p.tag ? `<span class="absolute top-3 left-3 bg-white/95 text-brand-dark border border-brand-gold/30 text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold">${p.tag}</span>` : "";
+
+                card.innerHTML = `
+                    <div class="relative aspect-square overflow-hidden bg-brand-beige">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                        ${tagMarkup}
+                        
+                        <!-- Wishlist Button -->
+                        <button onclick="triggerToast('Salvo nos favoritos!');" class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-full text-brand-charcoal hover:text-red-500 hover:bg-white shadow transition-all duration-300" title="Salvar Favorito">
+                            <i data-lucide="heart" class="w-4 h-4"></i>
+                        </button>
+
+                        <!-- Quick View Overlay -->
+                        <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <button onclick="openQuickView(${p.id})" class="bg-white/95 text-brand-dark text-[10px] uppercase tracking-widest px-5 py-3 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 font-bold hover:bg-brand-dark hover:text-white">
+                                Detalhes da Peça
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-5 flex flex-col flex-1 justify-between">
+                        <div class="space-y-1.5">
+                            <div class="flex items-center space-x-1">
+                                ${Array(5).fill().map(() => `<i data-lucide="star" class="w-3.5 h-3.5 fill-current text-amber-500"></i>`).join('')}
+                                <span class="text-[11px] text-brand-muted font-semibold ml-1">(${p.rating})</span>
+                            </div>
+                            <h3 class="font-serif text-sm sm:text-base text-brand-dark font-semibold line-clamp-1 group-hover:text-brand-gold transition-colors duration-200">${p.name}</h3>
+                            <div class="pt-1 flex items-baseline justify-between">
+                                <div class="space-y-0.5">
+                                    <span class="block font-medium text-brand-dark text-base">R$ ${p.price.toFixed(2)}</span>
+                                    <span class="block text-[10px] text-brand-muted tracking-wide">ou ${p.installments}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-4 border-t border-brand-sand/60 grid grid-cols-1 gap-1.5">
+                            <button onclick="addToCart(${p.id})" class="w-full py-2.5 bg-white border border-brand-dark text-brand-dark hover:bg-brand-dark hover:text-white text-[10px] uppercase tracking-widest font-bold transition-all duration-300">
+                                Adicionar ao Carrinho
+                            </button>
+                            <button onclick="directPurchase(${p.id})" class="w-full py-2 bg-brand-beige border border-brand-sand hover:bg-brand-sand text-brand-charcoal text-[10px] uppercase tracking-widest font-semibold flex items-center justify-center space-x-1.5 transition-all">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                <span>Compra Rápida</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Filtro de Categorias
+        function filterCategory(cat) {
+            activeCategory = cat;
+            
+            // Atualizar classes das tabs do cabeçalho de filtros
+            document.querySelectorAll('.category-tab').forEach(btn => {
+                const category = btn.getAttribute('data-category');
+                if (category === cat) {
+                    btn.className = "category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-brand-dark text-white shadow-lg font-semibold";
+                } else {
+                    btn.className = "category-tab px-6 py-2.5 rounded-full text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 bg-white text-brand-charcoal border border-brand-sand hover:border-brand-gold hover:text-brand-gold font-semibold";
+                }
+            });
+
+            renderProducts();
+            
+            // Scroll suave até a vitrine
+            const section = document.getElementById('products');
+            if(section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Abrir/Fechar Painel Lateral do Carrinho
+        function toggleCart(open) {
+            const overlay = document.getElementById('cart-overlay');
+            const sidebar = document.getElementById('cart-sidebar');
+            
+            if (open) {
+                overlay.classList.remove('hidden');
+                // Pequeno delay para acionar a transição
+                setTimeout(() => {
+                    overlay.classList.add('opacity-100');
+                    sidebar.classList.remove('translate-x-full');
+                }, 50);
+            } else {
+                overlay.classList.remove('opacity-100');
+                sidebar.classList.add('translate-x-full');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Adicionar Produto ao Carrinho
+        function addToCart(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            triggerToast(`"${product.name}" adicionado ao carrinho.`);
+            updateCartUI();
+            toggleCart(true);
+        }
+
+        // Remover Produto do Carrinho
+        function removeFromCart(productId) {
+            const item = cart.find(i => i.id === productId);
+            cart = cart.filter(i => i.id !== productId);
+            if (item) {
+                triggerToast(`Removido: "${item.name}"`);
+            }
+            updateCartUI();
+        }
+
+        // Mudar Quantidade
+        function updateQuantity(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                }
+            }
+            updateCartUI();
+        }
+
+        // Atualizar Renderização do Carrinho de Compras
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const badge = document.getElementById('cart-badge');
+            const sideCount = document.getElementById('cart-count-badge');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const shippingEl = document.getElementById('cart-shipping');
+            const totalEl = document.getElementById('cart-total');
+            const summaryPanel = document.getElementById('cart-summary-panel');
+            const freeShipProgress = document.getElementById('free-shipping-progress');
+
+            // Total de Itens
+            const count = cart.reduce((acc, item) => acc + item.quantity, 0);
+            badge.innerText = count;
+            sideCount.innerText = count;
+
+            if (count > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            // Carrinho vazio
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 space-y-4">
+                        <div class="mx-auto w-16 h-16 bg-brand-sand/50 rounded-full flex items-center justify-center text-brand-gold">
+                            <i data-lucide="shopping-bag" class="w-7 h-7"></i>
+                        </div>
+                        <p class="font-serif text-base text-brand-charcoal font-semibold">Seu carrinho está vazio.</p>
+                        <p class="text-xs text-brand-muted max-w-xs mx-auto">Explore nossas peças exclusivas para preencher seu dia com beleza e sofisticação.</p>
+                        <button onclick="toggleCart(false)" class="inline-block px-6 py-3 bg-brand-dark text-white text-xs uppercase tracking-widest font-bold hover:bg-brand-gold transition-colors">
+                            Ver Novidades
+                        </button>
+                    </div>
+                `;
+                summaryPanel.classList.add('hidden');
+            } else {
+                container.innerHTML = "";
+                summaryPanel.classList.remove('hidden');
+
+                // Preencher Itens
+                cart.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = "flex space-x-4 border-b border-brand-sand/60 pb-4 last:border-0 last:pb-0";
+                    row.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded bg-brand-sand">
+                        
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-serif text-xs sm:text-sm font-bold text-brand-dark line-clamp-1">${item.name}</h4>
+                                    <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-600 p-0.5 ml-2" title="Remover Peça">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <span class="text-[10px] text-brand-muted uppercase tracking-wider">${item.category}</span>
+                            </div>
+
+                            <div class="flex justify-between items-center mt-2">
+                                <!-- Contador de Quantidade -->
+                                <div class="flex items-center border border-brand-sand bg-white rounded">
+                                    <button onclick="updateQuantity(${item.id}, -1)" class="px-2 py-1 text-brand-muted hover:text-brand-gold transition-colors font-bold text-xs">-</button>
+                                    <span class="px-2 text-xs font-semibold text-brand-dark">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)" class="px-2 py-1 text-brand-muted hover:text-brand-gold transition-colors font-bold text-xs">+</button>
+                                </div>
+
+                                <!-- Preço Multiplicado -->
+                                <span class="font-semibold text-xs sm:text-sm text-brand-dark">
+                                    R$ ${(item.price * item.quantity).toFixed(2)}
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(row);
+                });
+
+                // Cálculos e Valores
+                const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+                const isFreeShipping = subtotal >= 250;
+                const shipping = isFreeShipping ? 0 : 15.00;
+                const total = subtotal + shipping;
+
+                subtotalEl.innerText = `R$ ${subtotal.toFixed(2)}`;
+                shippingEl.innerText = isFreeShipping ? "Grátis" : `R$ ${shipping.toFixed(2)}`;
+                shippingEl.className = isFreeShipping ? "text-emerald-600 font-bold" : "text-brand-gold font-semibold";
+                totalEl.innerText = `R$ ${total.toFixed(2)}`;
+
+                // Barra de Progresso de Frete Grátis
+                if (isFreeShipping) {
+                    freeShipProgress.innerHTML = `Parabéns! Você garantiu <strong class="text-emerald-600">Frete Grátis</strong> para o seu pedido.`;
+                    freeShipProgress.className = "p-2.5 bg-emerald-50 rounded border border-emerald-100 text-[11px] text-emerald-800 font-medium";
+                } else {
+                    const remaining = 250 - subtotal;
+                    freeShipProgress.innerHTML = `Falta apenas <strong class="text-brand-gold font-bold">R$ ${remaining.toFixed(2)}</strong> para você desbloquear <strong class="text-brand-dark">Frete Grátis</strong>!`;
+                    freeShipProgress.className = "p-2.5 bg-amber-50 rounded border border-[#C5A880]/20 text-[11px] text-brand-charcoal";
+                }
+            }
+            lucide.createIcons();
+        }
+
+        // Mostrar / Esconder Modal de Checkout
+        function toggleCheckout(open) {
+            const modal = document.getElementById('checkout-modal');
+            const list = document.getElementById('checkout-items-list');
+            const totalEl = document.getElementById('checkout-total');
+
+            if (open) {
+                // Preenche resumo dos itens no checkout
+                list.innerHTML = "";
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = "flex justify-between text-brand-charcoal text-xs";
+                    itemDiv.innerHTML = `
+                        <span>${item.quantity}x ${item.name}</span>
+                        <span>R$ ${(item.price * item.quantity).toFixed(2)}</span>
+                    `;
+                    list.appendChild(itemDiv);
+                });
+
+                const isFreeShipping = subtotal >= 250;
+                const total = subtotal + (isFreeShipping ? 0 : 15.00);
+                totalEl.innerText = `R$ ${total.toFixed(2)}`;
+
+                toggleCart(false);
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Seleção de forma de pagamento
+        function setPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-btn').forEach(btn => {
+                const btnMethod = btn.getAttribute('data-method');
+                if (btnMethod === method) {
+                    btn.className = "payment-btn py-2.5 text-[10px] uppercase tracking-wider font-bold border rounded bg-brand-dark text-white border-brand-dark";
+                } else {
+                    btn.className = "payment-btn py-2.5 text-[10px] uppercase tracking-wider font-bold border border-brand-sand bg-white text-brand-muted hover:border-brand-gold";
+                }
+            });
+        }
+
+        // Lógica de Envio de Pedido por WhatsApp
+        function handleCheckout(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('chk-name').value.trim();
+            const phone = document.getElementById('chk-phone').value.trim();
+            const address = document.getElementById('chk-address').value.trim();
+
+            if (!name || !phone || !address) {
+                triggerToast("Por favor preencha todos os campos do endereço.");
+                return;
+            }
+
+            const brandPhone = "5511999999999"; // Contato Comercial
+            let messageText = `Olá, Clarice Semijoias! Gostaria de realizar o seguinte pedido:\n\n`;
+            
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+                messageText += `• *${item.quantity}x ${item.name}* - R$ ${item.price.toFixed(2)} cada\n`;
+            });
+
+            const isFreeShipping = subtotal >= 250;
+            const total = subtotal + (isFreeShipping ? 0 : 15.00);
+
+            messageText += `\n*Total do Pedido:* R$ ${total.toFixed(2)}\n`;
+            messageText += `*Forma de Pagamento:* ${selectedPaymentMethod}\n\n`;
+            messageText += `*Dados para Entrega:*\n`;
+            messageText += `• Nome: ${name}\n`;
+            messageText += `• Telefone: ${phone}\n`;
+            messageText += `• Endereço: ${address}\n\n`;
+            messageText += `Aguardando a confirmação para darmos início ao envio! Obrigado!`;
+
+            const encodedMessage = encodeURIComponent(messageText);
+            const whatsappUrl = `https://wa.me/${brandPhone}?text=${encodedMessage}`;
+            
+            // Abre link em nova guia de forma segura
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpa o estado e fecha os modais
+            cart = [];
+            updateCartUI();
+            toggleCheckout(false);
+            
+            // Limpar formulário
+            document.getElementById('chk-name').value = "";
+            document.getElementById('chk-phone').value = "";
+            document.getElementById('chk-address').value = "";
+
+            triggerToast("Pedido enviado com sucesso para o WhatsApp!");
+        }
+
+        // Compra Rápida (WhatsApp Direto a partir do card do produto)
+        function directPurchase(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const brandPhone = "5511999999999";
+            const text = `Olá Clarice Semijoias! Gostaria de adquirir o seguinte produto:\n\n*${product.name}*\nValor: R$ ${product.price.toFixed(2)}\nCategoria: ${product.category}\n\nComo posso finalizar a compra?`;
+            
+            window.open(`https://wa.me/${brandPhone}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // Abrir Modal de Visualização Rápida
+        function openQuickView(productId) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            const modal = document.getElementById('quick-view-modal');
+            const content = document.getElementById('quick-view-content');
+
+            content.innerHTML = `
+                <div class="aspect-square bg-brand-sand">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                    <div class="space-y-2">
+                        <span class="text-[10px] uppercase tracking-widest text-brand-gold font-bold block">${product.category}</span>
+                        <h3 class="font-serif text-xl sm:text-2xl text-brand-dark font-semibold leading-tight">${product.name}</h3>
+                        <div class="flex items-center space-x-0.5 text-amber-500">
+                            ${Array(5).fill().map(() => `<i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>`).join('')}
+                            <span class="text-[11px] text-brand-muted ml-1.5 font-bold">(${product.rating})</span>
+                        </div>
+                        <p class="text-[11px] sm:text-xs text-brand-muted leading-relaxed font-light">
+                            ${product.description}
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="bg-white p-3.5 rounded border border-brand-sand">
+                            <span class="block text-xl font-serif text-brand-dark font-bold">R$ ${product.price.toFixed(2)}</span>
+                            <span class="text-[11px] text-brand-muted">ou ${product.installments} sem juros no cartão de crédito</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-1.5">
+                            <button onclick="addToCart(${product.id}); closeQuickView();" class="w-full py-3 bg-brand-dark hover:bg-brand-gold text-white text-xs uppercase tracking-widest font-bold transition-all">
+                                Adicionar ao Carrinho
+                            </button>
+                            <button onclick="directPurchase(${product.id}); closeQuickView();" class="w-full py-2.5 bg-white text-brand-charcoal hover:bg-brand-sand border border-brand-sand text-xs uppercase tracking-widest font-bold flex items-center justify-center space-x-1.5 transition-colors">
+                                <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-600"></i>
+                                <span>Comprar no WhatsApp</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function closeQuickView() {
+            document.getElementById('quick-view-modal').classList.add('hidden');
+        }
+
+        // Sistema de Toasts (Notificações Flutuantes)
+        function triggerToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            toast.className = "bg-brand-dark text-white px-5 py-3.5 rounded-lg shadow-2xl flex items-center justify-between space-x-3 border border-brand-gold/20 transform translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto";
+            toast.innerHTML = `
+                <span class="text-[11px] sm:text-xs font-semibold tracking-wide">${message}</span>
+                <button class="text-brand-gold hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+            `;
+
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            // Ativa Transição de Entrada
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            // Fechamento no clique do botão 'x'
+            const closeBtn = toast.querySelector('button');
+            closeBtn.addEventListener('click', () => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => { toast.remove(); }, 300);
+            });
+
+            // Auto destruição em 4s
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.classList.add('opacity-0');
+                    setTimeout(() => { toast.remove(); }, 300);
+                }
+            }, 4000);
+        }
+
+        // Newsletter fictícia
+        function subscribeNewsletter() {
+            const emailInput = document.getElementById('newsletter-email');
+            const email = emailInput.value.trim();
+
+            if (!email || !email.includes('@')) {
+                triggerToast("Por favor insira um e-mail válido.");
+                return;
+            }
+
+            triggerToast("Inscrição efetuada! Em breve você receberá nossos catálogos exclusivos.");
+            emailInput.value = "";
+        }
+    </script>
+</body>
+</html>
